@@ -1,0 +1,24 @@
+---
+- name: install yum-utils
+  yum:
+    name: yum-utils
+    state: latest
+
+- name: add docker repo
+  shell: "yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo"
+  args:
+    chdir: "/etc/yum.repos.d"
+    creates: docker-ce.repo
+
+- name: install docker
+  yum: 
+    name: ['docker-ce', 'docker-ce-cli', 'containerd.io', 'docker-compose']
+
+- name: restart docker
+  systemd:
+    name: docker.service
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+
+

@@ -1,0 +1,11 @@
+---
+- name: create aws directory
+  file:
+    path: ~/awx-repo
+    state: directory
+ 
+- name: download awx repo
+  git:
+    repo: "https://github.com/ansible/awx"
+    dest: "~/awx-repo"
+    version: "15.0.1"

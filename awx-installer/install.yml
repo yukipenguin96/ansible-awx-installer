@@ -1,0 +1,12 @@
+---
+- name: install requirements service
+  hosts: localhost
+  roles:
+      - { role: python3, become: yes }
+      - { role: selinux, become: yes }
+      - { role: docker-compose, become: yes }
+
+- name: install awx
+  hosts: localhost
+  roles:
+    - awx

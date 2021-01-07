@@ -1,0 +1,5 @@
+---
+- name: install libselinux
+  yum:
+    name: ["libselinux-python", "python3-libselinux"]
+    state: latest
